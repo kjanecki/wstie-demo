@@ -1,6 +1,7 @@
-### potrzebne narzędia
+### Potrzebne narzędia
 
 Instalacja docker: https://docs.docker.com/get-docker/
+
 Instalacja docker compose: https://docs.docker.com/compose/install/
 
 ### Uruchamianie środowiska

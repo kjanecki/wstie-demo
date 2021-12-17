@@ -1,0 +1,54 @@
+# Use postgres/example user/password credentials
+version: '3.1'
+
+services:
+
+  wstie-postgres-db:
+    image: postgres:13.5
+    restart: always
+    ports:
+      - 7432:5432
+    environment:
+      POSTGRES_USER: wstie
+      POSTGRES_PASSWORD: wstie
+      POSTGRES_DB: wstie_db
+    volumes: 
+      - /home/kjanecki/wstie/data/postgres-data:/var/lib/postgresql/data
+
+  wstwie-postgres-adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+  wstie-mongo-db:
+    image: mongo
+    restart: always
+    ports:
+      - 47017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: wstie
+      MONGO_INITDB_ROOT_PASSWORD: wstie
+
+  wstie-mongo-db-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: wstie
+      ME_CONFIG_MONGODB_ADMINPASSWORD: wstie
+      ME_CONFIG_MONGODB_URL: mongodb://wstie:wstie@wstie-mongo-db:27017/
+
+  wstie-rabbitmq:
+    image: rabbitmq:3-management
+    hostname: my-rabbit
+    restart: always
+    ports:
+      - 5672:5672
+      - 15672:15672
+
+  wstie-demo:
+    image: kjanecki/wstie-demo:1.0.2
+    ports:
+      - 8082:8085

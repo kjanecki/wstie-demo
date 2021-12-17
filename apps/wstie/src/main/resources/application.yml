@@ -1,0 +1,14 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:7432/wstie_db
+    username: wstie
+    password: wstie
+
+  rabbitmq:
+    username: guest
+    password: guest
+    host: localhost
+    port: 5672
